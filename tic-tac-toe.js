@@ -54,11 +54,10 @@ function endGame(winner, turns) {
 
 function newgame_onclick() {
     TURN_NOW = 0
-    TURN_ORDER = ["X", "O"]
-    changeCell(...CELLS, -1)
+    CELLS.forEach((c) => changeCell(c, -1));
 
     statusDiv = document.getElementById("status");
-    statusDiv.textContent = "";
+    statusDiv.textContent = "Move your mouse over a square and click to play an X or an O.";
     statusDiv.classList.remove("you-won")
 
     GAME_WON = false;
@@ -96,6 +95,8 @@ function cell_unfocus(event) {
 
 function onPageLoad(event) {
     // main function
+
+    document.querySelector(".controls > .btn").addEventListener("click", (event) => newgame_onclick())
 
     document.querySelectorAll("#board > div").forEach((cell) => {
         cell.classList.add("square");
