@@ -40,6 +40,12 @@ function cell_onclick(event) {
     changeCell(event.currentTarget, TURN_NOW % TURN_ORDER.length);
     TURN_NOW++;
 }
+function cell_focus(event) {
+    event.currentTarget.classList.add("hover")
+}
+function cell_unfocus(event) {
+    event.currentTarget.classList.remove("hover")
+}
 
 // start on load
 
@@ -49,6 +55,8 @@ function onPageLoad(event) {
     document.querySelectorAll("#board > div").forEach((cell) => {
         cell.classList.add("square");
         cell.addEventListener("click", (event) => cell_onclick(event));
+        cell.addEventListener("mouseover", (event) => cell_focus(event));
+        cell.addEventListener("mouseout", (event) => cell_unfocus(event));
     });
 
 }
